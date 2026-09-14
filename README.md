@@ -1,9 +1,9 @@
 # 2611COMP101904 - Lập trình Windows
 
-## MSSV: <mã số sinh viên của bạn>
+## MSSV: 51.01.104.031
 
-## Họ và tên: <họ tên của bạn>
+## Họ và tên: Đỗ Việt Hoàng
 
-## Lớp: <lớp của bạn>
+## Lớp: 51.01.CNTT.A
 
-## Nhóm: <số nhóm của bạn>
+## Nhóm: Nhóm 4
