@@ -9,5 +9,5 @@ Xây dựng ứng dụng Windows Forms cho phép nhập thông tin cá nhân c�
 - Bắt lỗi dữ liệu đầu vào.
 
 ## 3. Hình ảnh demo
-![Kết quả hiển thị](ket_qua.png)
-![Thông báo lỗi](loi_nhap.png)
+![Kết quả hiển thị](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab01/images/ket_qua.png)
+![Thông báo lỗi](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab01/images/loinhap.png)
