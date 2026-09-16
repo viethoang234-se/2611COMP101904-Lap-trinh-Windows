@@ -21,8 +21,9 @@ Viết chương trình Console C# quản lý một mảng số nguyên. Chương
 - Chương trình không bị dừng bất thường khi nhập sai dữ liệu.
 
 ## 4. Hình ảnh demo
-![Menu chương trình](menu.png)
-![Nhập và xuất mảng](nhap_xuat.png)
-![Tính tổng, tìm max/min, đếm chẵn lẻ](tinh_toan.png)
-![Sắp xếp tăng dần](sap_xep.png)
-![Tìm kiếm phần tử](tim_kiem.png)
+![Nhập và xuất mảng](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab02/images/Menu_chinh.png)
+![Tính tổng](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab02/images/Sum.png)
+![Tìm min max](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab02/images/Min_max.png).
+![Đếm chẵn lẻ](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab02/images/Chan_le.png).
+![Lỗi nhập và Sắp xếp tăng dần](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab02/images/Loi_nhap_va_sap_xep_mang.png)
+![Tìm kiếm phần tử](https://github.com/viethoang234-se/2611COMP101904-Lap-trinh-Windows/blob/main/Lab02/images/Tim_kiem.png)
