@@ -1,4 +1,0 @@
-C:\Users\HOANG\source\repos\Lab04\Lab04\obj\Debug\net10.0\Lab04.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\HOANG\source\repos\Lab04\Lab04\obj\Debug\net10.0\Lab04.AssemblyInfoInputs.cache
-C:\Users\HOANG\source\repos\Lab04\Lab04\obj\Debug\net10.0\Lab04.AssemblyInfo.cs
-C:\Users\HOANG\source\repos\Lab04\Lab04\obj\Debug\net10.0\Lab04.csproj.CoreCompileInputs.cache
