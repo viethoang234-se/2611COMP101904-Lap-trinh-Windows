@@ -19,10 +19,7 @@ namespace Lab01
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cboKhoa.Items.Add("Công nghệ thông tin");
-            cboKhoa.Items.Add("Giáo dục Tiểu học");
-            cboKhoa.Items.Add("Hóa học");
-            cboKhoa.Items.Add("Vật lý");
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
