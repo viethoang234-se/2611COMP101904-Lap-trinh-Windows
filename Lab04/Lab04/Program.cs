@@ -1,193 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Lab04_QuanLySanPham
 {
-    public interface IEntity
-    {
-        string Id { get; }
-    }
-
-    public class Product : IEntity
-    {
-        private string _maSP;
-        private string _tenSP;
-        private double _price;
-        private int _quantity;
-
-        public Product(string maSP, string tenSP, double price, int quantity)
-        {
-            MaSP = maSP;
-            TenSP = tenSP;
-            Price = price;
-            Quantity = quantity;
-        }
-
-        public string Id => MaSP;
-
-        public string MaSP
-        {
-            get => _maSP;
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Mã sản phẩm không được để trống.");
-                _maSP = value.Trim();
-            }
-        }
-
-        public string TenSP
-        {
-            get => _tenSP;
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Tên sản phẩm không được để trống.");
-                _tenSP = value.Trim();
-            }
-        }
-
-        public double Price
-        {
-            get => _price;
-            set
-            {
-                if (double.IsNaN(value) || double.IsInfinity(value) || value < 0)
-                    throw new ArgumentException("Đơn giá không được âm.");
-                _price = value;
-            }
-        }
-
-        public int Quantity
-        {
-            get => _quantity;
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentException("Số lượng không được âm.");
-                _quantity = value;
-            }
-        }
-
-        public override string ToString()
-        {
-            return $"{MaSP,-8}{TenSP,-25}{Price.ToString("N0", CultureInfo.InvariantCulture),-15}{Quantity,-10}";
-        }
-    }
-
-    public class DuplicateProductException : Exception
-    {
-        public string MaSP { get; }
-
-        public DuplicateProductException(string maSP)
-            : base($"Mã sản phẩm \"{maSP}\" đã tồn tại.")
-        {
-            MaSP = maSP;
-        }
-    }
-
-    public class ProductNotFoundException : Exception
-    {
-        public string MaSP { get; }
-
-        public ProductNotFoundException(string maSP)
-            : base($"Không tìm thấy sản phẩm có mã \"{maSP}\".")
-        {
-            MaSP = maSP;
-        }
-    }
-
-    public class Repository<T> where T : IEntity
-    {
-        private readonly List<T> _items = new List<T>();
-
-        public void Add(T item)
-        {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item));
-            if (FindById(item.Id) != null)
-                throw new InvalidOperationException($"Id \"{item.Id}\" đã tồn tại trong repository.");
-            _items.Add(item);
-        }
-
-        public bool Remove(string id)
-        {
-            T item = FindById(id);
-            return item != null && _items.Remove(item);
-        }
-
-        public T FindById(string id)
-        {
-            if (id == null) return default;
-            return _items.FirstOrDefault(x => string.Equals(x.Id, id.Trim(), StringComparison.OrdinalIgnoreCase));
-        }
-
-        public List<T> Find(Func<T, bool> predicate)
-        {
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
-            return _items.Where(predicate).ToList();
-        }
-
-        public List<T> GetAll()
-        {
-            return new List<T>(_items);
-        }
-    }
-
-    public class ProductService
-    {
-        private readonly Repository<Product> _repository;
-
-        public event Action<Product> ProductAdded;
-        public event Action<Product> ProductRemoved;
-
-        public ProductService(Repository<Product> repository)
-        {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-        }
-
-        public void AddProduct(Product product)
-        {
-            if (product == null)
-                throw new ArgumentNullException(nameof(product));
-            if (_repository.FindById(product.MaSP) != null)
-                throw new DuplicateProductException(product.MaSP);
-
-            _repository.Add(product);
-            ProductAdded?.Invoke(product);
-        }
-
-        public void RemoveProduct(string maSP)
-        {
-            Product product = _repository.FindById(maSP);
-            if (product == null)
-                throw new ProductNotFoundException(maSP);
-
-            _repository.Remove(product.MaSP);
-            ProductRemoved?.Invoke(product);
-        }
-
-        public List<Product> GetAll() => _repository.GetAll();
-
-        public Product TimTheoMa(string maSP) => _repository.FindById(maSP);
-
-        public List<Product> Search(Func<Product, bool> dieuKien) => _repository.Find(dieuKien);
-
-        public List<Product> Filter(double giaMin, double giaMax)
-        {
-            Func<Product, bool> dieuKien = p => p.Price >= giaMin && p.Price <= giaMax;
-            return _repository.Find(dieuKien);
-        }
-
-        public double TinhTongGiaTriKho()
-        {
-            return _repository.GetAll().Sum(p => p.Price * p.Quantity);
-        }
-    }
-
     public class Program
     {
         private static ProductService service = new ProductService(new Repository<Product>());
@@ -249,12 +65,8 @@ namespace Lab04_QuanLySanPham
 
         private static void ThemSanPham()
         {
-            Console.Write("Nhập mã sản phẩm: ");
-            string ma = Console.ReadLine();
-
-            Console.Write("Nhập tên sản phẩm: ");
-            string ten = Console.ReadLine();
-
+            string ma = NhapChuoi("Nhập mã sản phẩm: ");
+            string ten = NhapChuoi("Nhập tên sản phẩm: ");
             double gia = NhapSoThuc("Nhập đơn giá (>= 0): ", v => v >= 0);
             int soLuong = NhapSoNguyen("Nhập số lượng (>= 0): ", v => v >= 0);
 
@@ -334,7 +146,22 @@ namespace Lab04_QuanLySanPham
         private static void TinhTongGiaTriKho()
         {
             double tong = service.TinhTongGiaTriKho();
-            Console.WriteLine($"Tổng giá trị kho: {tong:N0}");
+            string tongText = tong.ToString("N0", CultureInfo.InvariantCulture);
+            Console.WriteLine($"Tổng giá trị kho: {tongText}");
+        }
+
+        private static string NhapChuoi(string thongBao)
+        {
+            while (true)
+            {
+                Console.Write(thongBao);
+                string input = Console.ReadLine()?.Trim();
+
+                if (!string.IsNullOrEmpty(input))
+                    return input;
+
+                Console.WriteLine("Không được để trống, vui lòng nhập lại.");
+            }
         }
 
         private static double NhapSoThuc(string thongBao, Func<double, bool> hopLe)
