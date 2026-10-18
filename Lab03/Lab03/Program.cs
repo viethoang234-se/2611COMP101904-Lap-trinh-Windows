@@ -65,8 +65,7 @@ namespace Lab03_QuanLySinhVienOOP
 
         private static void ThemSinhVien()
         {
-            Console.Write("Nhập mã sinh viên: ");
-            string ma = Console.ReadLine();
+            string ma = NhapChuoi("Nhập mã sinh viên: ");
 
             if (quanLy.TimTheoMa(ma) != null)
             {
@@ -74,13 +73,11 @@ namespace Lab03_QuanLySinhVienOOP
                 return;
             }
 
-            Console.Write("Nhập họ tên: ");
-            string hoTen = Console.ReadLine();
+            string hoTen = NhapChuoi("Nhập họ tên: ");
 
             DateTime ngaySinh = NhapNgay("Nhập ngày sinh (dd/MM/yyyy): ");
 
-            Console.Write("Nhập mã lớp: ");
-            string maLop = Console.ReadLine();
+            string maLop = NhapChuoi("Nhập mã lớp: ");
 
             double diem = NhapDiem("Nhập điểm trung bình (0-10): ");
 
@@ -172,12 +169,27 @@ namespace Lab03_QuanLySinhVienOOP
             while (true)
             {
                 Console.Write(thongBao);
-                string input = Console.ReadLine();
+                string input = Console.ReadLine()?.Trim().Replace(',', '.');
 
-                if (double.TryParse(input, out double diem) && diem >= 0 && diem <= 10)
+                if (double.TryParse(input, NumberStyles.Float, CultureInfo.InvariantCulture, out double diem)
+                    && diem >= 0 && diem <= 10)
                     return diem;
 
                 Console.WriteLine("Điểm không hợp lệ, vui lòng nhập lại (0-10).");
+            }
+        }
+
+        private static string NhapChuoi(string thongBao)
+        {
+            while (true)
+            {
+                Console.Write(thongBao);
+                string input = Console.ReadLine()?.Trim();
+
+                if (!string.IsNullOrEmpty(input))
+                    return input;
+
+                Console.WriteLine("Không được để trống, vui lòng nhập lại.");
             }
         }
 

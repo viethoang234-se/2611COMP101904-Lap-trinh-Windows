@@ -1,5 +1,5 @@
 using System;
-
+using System.Globalization;
 namespace Lab03_QuanLySinhVienOOP
 {
     public class SinhVien : Nguoi
@@ -37,7 +37,8 @@ namespace Lab03_QuanLySinhVienOOP
 
         public override string LayThongTin()
         {
-            return $"{MaSinhVien,-8}{HoTen,-25}{MaLop,-10}{DiemTrungBinh,-8:0.0}{XepLoai(),-10}";
+            string diem = DiemTrungBinh.ToString("0.0", CultureInfo.InvariantCulture);
+            return $"{MaSinhVien,-8}{HoTen,-25}{MaLop,-10}{diem,-8}{XepLoai(),-10}";
         }
     }
 }
