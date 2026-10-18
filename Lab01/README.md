@@ -4,7 +4,7 @@
 - **Họ và tên:** Đỗ Việt Hoàng
 - **MSSV:** 51.01.104.031
 - **Lớp:** 51.CNTT.A
-- **Công cụ:** Visual Studio, Windows Forms App (C#)
+- **Công cụ:** Visual Studio, Windows Forms App (C#, .NET Framework 4.7.2)
 
 ## 1. Mô tả bài toán
 
@@ -16,11 +16,11 @@
 Lab01
 |-- Lab01.slnx
 |-- Lab01_ThongTinCaNhan
-|   |-- Form1.cs
-|   |-- Form1.Designer.cs
+|   |-- FrmThongTinCaNhan.cs
+|   |-- FrmThongTinCaNhan.Designer.cs
 |   `-- Program.cs
-`-- images
-    `-- hien_thi.png
+|-- images
+`-- README.md
 ```
 
 ## 3. Giao diện
@@ -52,26 +52,35 @@ Lab01
 - Phải chọn giới tính.
 - Phải chọn khoa.
 
-Khi dữ liệu sai, chương trình hiện MessageBox cảnh báo và không xử lý tiếp.
+Khi dữ liệu sai, chương trình hiện MessageBox cảnh báo và không xử lý tiếp. Tuổi được tính bằng: năm hiện tại - năm sinh.
 
 ## 6. Kết quả
 
-Nhập: Họ tên = Đỗ Việt Hoàng, Năm sinh = 2007, Email = abc123@gmail.com, Giới tính = Nam, Khoa = Công nghệ Thông tin.
+### 6.1. Giao diện chính
 
-![Kết quả hiển thị](images/hien_thi.png)
+![Giao diện chính](images/ket_qua.png)
 
-Chương trình hiển thị:
+### 6.2. Nhập đủ dữ liệu hợp lệ và nhấn Hiển thị
 
-```
-THÔNG TIN SINH VIÊN
-Họ tên: Đỗ Việt Hoàng
-Tuổi: 19
-Email: abc123@gmail.com
-Giới tính: Nam
-Khoa/Lớp: Công nghệ Thông tin
-```
+Chương trình hiển thị hộp thoại **THÔNG TIN SINH VIÊN** gồm: họ tên, tuổi, email, giới tính, khoa/lớp.
 
-Tuổi được tính bằng: năm hiện tại - năm sinh.
+![Hiển thị thông tin](images/hien_thi.png)
+
+### 6.3. Lỗi khi để trống họ tên
+
+![Lỗi nhập tên](images/loi_nhap_ten.png)
+
+### 6.4. Lỗi khi để trống email
+
+![Lỗi nhập email](images/loi_nhap_email.png)
+
+### 6.5. Lỗi khi nhập năm sinh không hợp lệ
+
+![Lỗi năm sinh](images/loi_nam_sinh.png)
+
+### 6.6. Xác nhận khi nhấn nút Thoát
+
+![Xác nhận thoát](images/thoat_button.png)
 
 ## 7. Cách chạy chương trình
 
