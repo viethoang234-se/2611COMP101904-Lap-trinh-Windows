@@ -1,7 +1,6 @@
 ﻿/* =====================================================================
    COMP1019 - Lab 10: EduManagerDB
    File 01: Tạo database, bảng, khóa chính, khóa ngoại, ràng buộc
-   Chạy file này đầu tiên (có thể chạy lại nhiều lần).
    ===================================================================== */
 
 USE master;
